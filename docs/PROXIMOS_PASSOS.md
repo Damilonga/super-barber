@@ -54,10 +54,10 @@ Tarefas:
 
 - Editar barbearia.
 - Ativar/inativar barbearia.
-- Editar barbeiro.
-- Ativar/inativar barbeiro.
-- Editar servico.
-- Ativar/inativar servico.
+- [x] Editar barbeiro.
+- [x] Ativar/inativar barbeiro.
+- [x] Editar servico.
+- [x] Ativar/inativar servico.
 - Alterar status do agendamento.
 
 ## 5. Deploy

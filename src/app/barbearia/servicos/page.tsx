@@ -1,10 +1,11 @@
-import { Pencil, Search, Scissors, Trash2 } from "lucide-react";
+import { Search, Scissors } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { getBarbershopForUser } from "@/lib/auth/barbershop-context";
 import { requireUser } from "@/lib/auth/guards";
 import { requireCompletedOnboarding } from "@/lib/auth/onboarding-guard";
 import { getServicesByBarbershopId } from "@/lib/db/queries";
 import { CreateServiceForm } from "./create-service-form";
+import { ServiceRowActions } from "./service-row-actions";
 
 export const dynamic = "force-dynamic";
 
@@ -40,7 +41,7 @@ export default async function ServicesPage() {
       </label>
 
       <section className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <div className="grid grid-cols-[1.4fr_140px_140px_120px_120px] border-b border-slate-100 px-5 py-3 text-sm font-bold text-slate-500">
+        <div className="grid grid-cols-[1.4fr_140px_140px_120px_190px] border-b border-slate-100 px-5 py-3 text-sm font-bold text-slate-500">
           <span>Servico</span>
           <span>Valor</span>
           <span>Duracao</span>
@@ -50,7 +51,7 @@ export default async function ServicesPage() {
         {services.map((service) => (
           <div
             key={service.id}
-            className="grid grid-cols-[1.4fr_140px_140px_120px_120px] items-center border-b border-slate-100 px-5 py-4 text-sm last:border-b-0"
+            className="grid grid-cols-[1.4fr_140px_140px_120px_190px] items-center border-b border-slate-100 px-5 py-4 text-sm last:border-b-0"
           >
             <div className="flex items-center gap-3">
               <span className="flex size-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
@@ -59,23 +60,22 @@ export default async function ServicesPage() {
               <div>
                 <p className="font-bold text-slate-800">{service.name}</p>
                 <p className="text-xs font-medium text-slate-400">
-                  Visivel no agendamento publico
+                  {service.description || "Visivel no agendamento publico"}
                 </p>
               </div>
             </div>
             <p className="font-medium text-slate-700">R$ {service.price}</p>
             <p className="text-slate-600">{service.durationMinutes} min</p>
-            <span className="w-fit rounded-md bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 ring-1 ring-emerald-100">
+            <span
+              className={`w-fit rounded-md px-3 py-1 text-xs font-bold ring-1 ${
+                service.status === "ativo"
+                  ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
+                  : "bg-slate-100 text-slate-500 ring-slate-200"
+              }`}
+            >
               {service.status}
             </span>
-            <div className="flex items-center gap-4 text-slate-300">
-              <button aria-label="Editar" className="transition hover:text-slate-600">
-                <Pencil size={17} aria-hidden="true" />
-              </button>
-              <button aria-label="Excluir" className="transition hover:text-red-500">
-                <Trash2 size={17} aria-hidden="true" />
-              </button>
-            </div>
+            <ServiceRowActions service={service} />
           </div>
         ))}
       </section>

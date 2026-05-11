@@ -33,6 +33,7 @@ type ServiceRow = {
   id: string;
   barbershop_id: string;
   name: string;
+  description: string | null;
   price: string;
   duration_minutes: number;
   status: Service["status"];
@@ -95,6 +96,7 @@ function mapService(row: ServiceRow): Service {
     id: row.id,
     barbershopId: row.barbershop_id,
     name: row.name,
+    description: row.description ?? "",
     price: Number(row.price),
     durationMinutes: row.duration_minutes,
     status: row.status,
@@ -237,7 +239,7 @@ export async function getServicesByBarbershopId(
 ): Promise<Service[]> {
   const sql = getSql();
   const rows = (await sql`
-    select id, barbershop_id, name, price, duration_minutes, status
+    select id, barbershop_id, name, description, price, duration_minutes, status
     from public.services
     where barbershop_id = ${barbershopId}
     order by name asc

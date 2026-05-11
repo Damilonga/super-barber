@@ -149,7 +149,9 @@ Arquivos principais:
 - Dashboard le dados reais do Neon.
 - Agenda le agendamentos reais do Neon.
 - Barbeiros leem e cadastram dados reais no Neon.
+- Barbeiros podem ser editados e ativados/inativados sem apagar historico.
 - Servicos leem e cadastram dados reais no Neon.
+- Servicos podem ser editados e ativados/inativados sem apagar historico.
 - Configuracoes carregam dados reais da barbearia padrao.
 
 Arquivos principais:
@@ -159,9 +161,11 @@ Arquivos principais:
 - `src/app/barbearia/barbeiros/page.tsx`
 - `src/app/barbearia/barbeiros/actions.ts`
 - `src/app/barbearia/barbeiros/create-barber-form.tsx`
+- `src/app/barbearia/barbeiros/barber-row-actions.tsx`
 - `src/app/barbearia/servicos/page.tsx`
 - `src/app/barbearia/servicos/actions.ts`
 - `src/app/barbearia/servicos/create-service-form.tsx`
+- `src/app/barbearia/servicos/service-row-actions.tsx`
 - `src/app/barbearia/configuracoes/page.tsx`
 
 ### Agendamento publico
@@ -210,7 +214,7 @@ npm run db:inspect
 
 ## Proximo bloco recomendado
 
-Implementar CRUD completo: editar/inativar barbeiros, servicos e barbearias, alem de alterar status dos agendamentos.
+Continuar CRUD completo: editar/inativar barbearias no Super Admin e permitir alterar status dos agendamentos.
 
 ## Observacoes importantes
 

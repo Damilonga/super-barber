@@ -36,6 +36,11 @@ export const barberSchema = z.object({
   specialties: z.string().optional(),
 });
 
+export const updateBarberSchema = barberSchema.extend({
+  barberId: z.string().uuid("Barbeiro invalido"),
+  status: z.enum(["ativo", "inativo"]),
+});
+
 export const appointmentSchema = z.object({
   barbershopId: z.string().uuid("Barbearia invalida"),
   barberId: z.string().uuid("Escolha um barbeiro"),
@@ -71,4 +76,9 @@ export const onboardingSchema = z.object({
   primaryColor: z
     .string()
     .regex(/^#[0-9a-fA-F]{6}$/, "Informe uma cor valida"),
+});
+
+export const updateServiceSchema = serviceSchema.extend({
+  serviceId: z.string().uuid("Servico invalido"),
+  status: z.enum(["ativo", "inativo"]),
 });

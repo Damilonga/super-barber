@@ -35,6 +35,7 @@ export type Service = {
   id: string;
   barbershopId: string;
   name: string;
+  description: string;
   price: number;
   durationMinutes: number;
   status: "ativo" | "inativo";

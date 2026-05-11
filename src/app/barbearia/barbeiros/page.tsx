@@ -1,9 +1,10 @@
-import { Mail, Pencil, Search, Trash2, UserRound } from "lucide-react";
+import { Mail, Search, UserRound } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { getBarbershopForUser } from "@/lib/auth/barbershop-context";
 import { requireUser } from "@/lib/auth/guards";
 import { requireCompletedOnboarding } from "@/lib/auth/onboarding-guard";
 import { getBarbersByBarbershopId } from "@/lib/db/queries";
+import { BarberRowActions } from "./barber-row-actions";
 import { CreateBarberForm } from "./create-barber-form";
 
 export const dynamic = "force-dynamic";
@@ -63,19 +64,20 @@ export default async function BarbersPage() {
               </div>
             </div>
             <span className="text-slate-600">{barber.phone}</span>
-            <span className="w-fit rounded-md bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 ring-1 ring-emerald-100">
+            <span
+              className={`w-fit rounded-md px-3 py-1 text-xs font-bold ring-1 ${
+                barber.status === "ativo"
+                  ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
+                  : "bg-slate-100 text-slate-500 ring-slate-200"
+              }`}
+            >
               {barber.status}
             </span>
-            <div className="flex items-center gap-4 text-slate-300">
+            <div className="flex items-center gap-2 text-slate-300">
               <button aria-label="Enviar mensagem" className="transition hover:text-slate-600">
                 <Mail size={17} aria-hidden="true" />
               </button>
-              <button aria-label="Editar" className="transition hover:text-slate-600">
-                <Pencil size={17} aria-hidden="true" />
-              </button>
-              <button aria-label="Excluir" className="transition hover:text-red-500">
-                <Trash2 size={17} aria-hidden="true" />
-              </button>
+              <BarberRowActions barber={barber} />
             </div>
           </div>
         ))}
