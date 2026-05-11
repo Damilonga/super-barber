@@ -1,0 +1,119 @@
+import type { Appointment, Barber, Barbershop, Service } from "@/types";
+
+export const barbershops: Barbershop[] = [
+  {
+    id: "barbearia-joao",
+    name: "Barbearia do Joao",
+    slug: "barbearia-do-joao",
+    ownerName: "Joao Martins",
+    email: "joao@barbearia.com",
+    phone: "(11) 99999-1000",
+    plan: "Pro",
+    status: "ativa",
+    primaryColor: "#2563eb",
+    onboardingCompleted: true,
+  },
+  {
+    id: "barbearia-tio-luiz",
+    name: "Barbearia Tio Luiz",
+    slug: "barbearia-tio-luiz",
+    ownerName: "Luiz Bedinot",
+    email: "luiz@barbearia.com",
+    phone: "(51) 99999-2000",
+    plan: "Start",
+    status: "ativa",
+    primaryColor: "#0f172a",
+    onboardingCompleted: true,
+  },
+];
+
+export const barbers: Barber[] = [
+  {
+    id: "joao",
+    barbershopId: "barbearia-joao",
+    name: "Joao",
+    phone: "(11) 98888-1000",
+    specialties: ["Corte masculino", "Barba"],
+    status: "ativo",
+  },
+  {
+    id: "pedro",
+    barbershopId: "barbearia-joao",
+    name: "Pedro",
+    phone: "(11) 98888-2000",
+    specialties: ["Degrade", "Sobrancelha"],
+    status: "ativo",
+  },
+];
+
+export const services: Service[] = [
+  {
+    id: "corte",
+    barbershopId: "barbearia-joao",
+    name: "Corte",
+    price: 60,
+    durationMinutes: 30,
+    status: "ativo",
+  },
+  {
+    id: "barba",
+    barbershopId: "barbearia-joao",
+    name: "Barba",
+    price: 45,
+    durationMinutes: 30,
+    status: "ativo",
+  },
+  {
+    id: "combo",
+    barbershopId: "barbearia-joao",
+    name: "Corte + barba",
+    price: 95,
+    durationMinutes: 60,
+    status: "ativo",
+  },
+];
+
+export const appointments: Appointment[] = [
+  {
+    id: "ag-001",
+    barbershopId: "barbearia-joao",
+    barberId: "joao",
+    serviceId: "corte",
+    customerName: "Carlos Silva",
+    customerPhone: "(11) 97777-1000",
+    customerEmail: "carlos@email.com",
+    date: "2026-05-08",
+    startTime: "09:00",
+    endTime: "09:30",
+    status: "confirmado",
+    value: 60,
+  },
+  {
+    id: "ag-002",
+    barbershopId: "barbearia-joao",
+    barberId: "pedro",
+    serviceId: "combo",
+    customerName: "Rafael Costa",
+    customerPhone: "(11) 97777-2000",
+    customerEmail: "rafael@email.com",
+    date: "2026-05-08",
+    startTime: "10:00",
+    endTime: "11:00",
+    status: "agendado",
+    value: 95,
+  },
+  {
+    id: "ag-003",
+    barbershopId: "barbearia-joao",
+    barberId: "joao",
+    serviceId: "barba",
+    customerName: "Andre Lima",
+    customerPhone: "(11) 97777-3000",
+    customerEmail: "andre@email.com",
+    date: "2026-05-08",
+    startTime: "14:00",
+    endTime: "14:30",
+    status: "atendido",
+    value: 45,
+  },
+];

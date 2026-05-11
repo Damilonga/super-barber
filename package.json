@@ -6,12 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:check": "node --env-file=.env.local scripts/check-db.mjs",
+    "db:schema": "node --env-file=.env.local scripts/run-sql.mjs database/schema.sql",
+    "db:seed": "node --env-file=.env.local scripts/run-sql.mjs database/seed.sql",
+    "db:seed-auth": "node --env-file=.env.local scripts/seed-auth-users.mjs",
+    "db:inspect": "node --env-file=.env.local scripts/inspect-db.mjs",
+    "auth:secret": "node scripts/generate-secret.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "lucide-react": "^1.14.0",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
