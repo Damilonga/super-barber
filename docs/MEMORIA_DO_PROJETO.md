@@ -21,6 +21,28 @@ C:\Users\dario\Documents\MEGA\CODEX NOVO PROJETO\super-barber
 - Server Actions
 - Zod para validacao
 - Lucide React para icones
+- Vercel para deploy
+
+## Deploy
+
+Projeto Vercel: `damilongas-projects/super-barber`
+
+URL de producao:
+
+```text
+https://super-barber-rho.vercel.app
+```
+
+Rotas testadas em producao:
+
+- `/`
+- `/login`
+- `/agendar/barbearia-do-joao`
+
+Variaveis configuradas na Vercel:
+
+- `DATABASE_URL`
+- `AUTH_SECRET`
 
 ## Banco de dados
 
@@ -222,7 +244,7 @@ npm run db:inspect
 
 ## Proximo bloco recomendado
 
-Iniciar deploy: criar projeto na Vercel, configurar variaveis de ambiente, conectar Neon e testar a primeira versao online.
+Iniciar bloco comercial: melhorar dados demo, pagina publica da barbearia, tela de planos, pitch simples e checklist de apresentacao.
 
 ## Observacoes importantes
 

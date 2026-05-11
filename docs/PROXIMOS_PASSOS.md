@@ -66,11 +66,11 @@ Objetivo: publicar primeira versao online.
 
 Tarefas:
 
-- Subir repositorio para GitHub.
-- Criar projeto na Vercel.
-- Configurar variaveis de ambiente.
-- Conectar Neon.
-- Testar deploy.
+- [x] Subir repositorio para GitHub.
+- [x] Criar projeto na Vercel.
+- [x] Configurar variaveis de ambiente.
+- [x] Conectar Neon.
+- [x] Testar deploy.
 
 ## 6. Comercial
 
