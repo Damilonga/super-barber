@@ -78,8 +78,8 @@ Objetivo: deixar demonstravel e vendavel.
 
 Tarefas:
 
-- Criar dados demo melhores.
-- Melhorar pagina publica da barbearia.
+- [x] Criar dados demo melhores.
+- [x] Melhorar pagina publica da barbearia.
 - Criar tela de planos.
 - Criar pitch simples do produto.
 - Criar checklist de apresentacao para barbearias.

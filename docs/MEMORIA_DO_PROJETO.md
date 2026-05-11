@@ -80,14 +80,13 @@ npm run auth:secret
 
 ## Dados demo atuais
 
-Na ultima verificacao:
+Dados demo principais:
 
-- 1 barbearia
-- 3 barbeiros
-- 4 servicos
-- 4 agendamentos
-- 2 usuarios
-- 0 sessoes ativas na ultima verificacao
+- Barbearia Prime Studio
+- barbeiros ativos de demonstracao
+- servicos ativos de demonstracao
+- disponibilidade por barbeiro em `available_hours`
+- agendamentos demo em datas proximas ao inicio do projeto
 
 ## Fluxos implementados
 
@@ -201,6 +200,7 @@ Arquivos principais:
 ### Agendamento publico
 
 - Pagina publica por slug em `/agendar/[slug]`.
+- Pagina publica ganhou cabecalho comercial com identidade da barbearia, endereco, telefone, profissionais e servicos em destaque.
 - Carrega barbearia, barbeiros e servicos do Neon.
 - Cliente escolhe barbeiro, servico, data, horario disponivel e informa dados.
 - Agendamento e salvo no Neon.
@@ -244,7 +244,7 @@ npm run db:inspect
 
 ## Proximo bloco recomendado
 
-Iniciar bloco comercial: melhorar dados demo, pagina publica da barbearia, tela de planos, pitch simples e checklist de apresentacao.
+Continuar bloco comercial: criar tela de planos, pitch simples e checklist de apresentacao para vender para barbearias.
 
 ## Observacoes importantes
 
