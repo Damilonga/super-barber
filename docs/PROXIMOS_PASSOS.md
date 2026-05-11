@@ -15,8 +15,8 @@ Tarefas:
 - [x] Proteger rotas do admin.
 - [x] Proteger rotas da barbearia por usuario logado.
 - [x] Proteger actions de cadastro no servidor.
-- [ ] Refinar menu por perfil.
-- [ ] Remover credenciais demo da tela de login antes de producao.
+- [x] Refinar menu por perfil.
+- [x] Remover credenciais demo da tela de login antes de producao.
 - [ ] Trocar senha do Neon antes de producao.
 - [ ] Reforcar isolamento por `barbershop_id` em todos os fluxos.
 

@@ -93,6 +93,7 @@ Dados demo principais:
 ### Autenticacao
 
 - Login real com e-mail e senha.
+- Tela de login nao exibe mais credenciais demo.
 - Senhas salvas com hash `scrypt`.
 - Sessoes salvas na tabela `sessions`.
 - Cookie HTTP-only chamado `super_barber_session`.
@@ -172,6 +173,8 @@ Arquivos principais:
 
 ### Painel da barbearia
 
+- Menu lateral agora usa dados reais do usuario logado e da barbearia.
+- Menu de Super Admin foi separado do menu operacional da barbearia.
 - Dashboard le dados reais do Neon.
 - Agenda le agendamentos reais do Neon.
 - Agenda permite alterar status do agendamento: agendado, confirmado, atendido, cancelado e ausente.

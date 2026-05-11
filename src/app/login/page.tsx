@@ -16,11 +16,6 @@ export default function LoginPage() {
         </div>
 
         <LoginForm />
-
-        <div className="mt-5 rounded-md bg-slate-50 p-3 text-xs font-medium leading-5 text-slate-500">
-          <p>Super Admin: admin@superbarber.local / SuperBarber123!</p>
-          <p>Barbearia: joao@barbearia.local / Barbearia123!</p>
-        </div>
       </section>
     </main>
   );
