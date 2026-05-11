@@ -244,7 +244,13 @@ npm run db:inspect
 
 ## Proximo bloco recomendado
 
-Continuar bloco comercial: criar tela de planos, pitch simples e checklist de apresentacao para vender para barbearias.
+Refinar pre-producao: remover credenciais demo da tela de login, trocar senha do Neon, revisar isolamento por barbearia e preparar dominio proprio.
+
+## Materiais comerciais
+
+- Tela publica de planos em `/planos`.
+- Pitch comercial em `docs/PITCH_COMERCIAL.md`.
+- Checklist de demonstracao em `docs/CHECKLIST_DEMO_BARBEARIAS.md`.
 
 ## Observacoes importantes
 

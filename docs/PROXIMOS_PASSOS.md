@@ -80,6 +80,6 @@ Tarefas:
 
 - [x] Criar dados demo melhores.
 - [x] Melhorar pagina publica da barbearia.
-- Criar tela de planos.
-- Criar pitch simples do produto.
-- Criar checklist de apresentacao para barbearias.
+- [x] Criar tela de planos.
+- [x] Criar pitch simples do produto.
+- [x] Criar checklist de apresentacao para barbearias.

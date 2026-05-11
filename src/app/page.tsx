@@ -31,6 +31,12 @@ export default function Home() {
             >
               Ver agendamento publico
             </Link>
+            <Link
+              href="/planos"
+              className="inline-flex items-center gap-2 rounded-md border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+            >
+              Ver planos
+            </Link>
           </div>
         </div>
 
