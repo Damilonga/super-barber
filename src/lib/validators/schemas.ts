@@ -21,6 +21,11 @@ export const barbershopSchema = z.object({
   address: z.string().optional(),
 });
 
+export const updateBarbershopSchema = barbershopSchema.extend({
+  barbershopId: z.string().uuid("Barbearia invalida"),
+  status: z.enum(["ativa", "inativa", "bloqueada"]),
+});
+
 export const serviceSchema = z.object({
   barbershopId: z.string().uuid("Barbearia invalida"),
   name: z.string().min(2, "Informe o nome do servico"),
@@ -50,6 +55,12 @@ export const appointmentSchema = z.object({
   customerEmail: emailSchema.optional().or(z.literal("")),
   appointmentDate: z.string().min(10, "Escolha uma data"),
   startTime: z.string().regex(/^\d{2}:\d{2}$/, "Escolha um horario"),
+});
+
+export const updateAppointmentStatusSchema = z.object({
+  appointmentId: z.string().uuid("Agendamento invalido"),
+  barbershopId: z.string().uuid("Barbearia invalida"),
+  status: z.enum(["agendado", "confirmado", "atendido", "cancelado", "ausente"]),
 });
 
 export const firstAccessPasswordSchema = z

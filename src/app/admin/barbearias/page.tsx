@@ -1,7 +1,8 @@
-import { Copy, Mail, Pencil, Power, Search, Store, Trash2 } from "lucide-react";
+import { Search, Store } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { requireRole } from "@/lib/auth/guards";
 import { getBarbershops } from "@/lib/db/queries";
+import { BarbershopRowActions } from "./barbershop-row-actions";
 import { CreateBarbershopForm } from "./create-barbershop-form";
 
 export const dynamic = "force-dynamic";
@@ -56,30 +57,18 @@ export default async function AdminBarbershopsPage() {
             </div>
             <span className="text-slate-600">{shop.email}</span>
             <span className="text-slate-600">{shop.phone}</span>
-            <span className="w-fit rounded-md bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 ring-1 ring-emerald-100">
+            <span
+              className={`w-fit rounded-md px-3 py-1 text-xs font-bold ring-1 ${
+                shop.status === "ativa"
+                  ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
+                  : shop.status === "bloqueada"
+                    ? "bg-red-50 text-red-700 ring-red-100"
+                    : "bg-slate-100 text-slate-500 ring-slate-200"
+              }`}
+            >
               {shop.status}
             </span>
-            <div className="flex items-center gap-4 text-slate-300">
-              <button className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 transition hover:text-blue-700">
-                <Store size={17} aria-hidden="true" />
-                Ver painel
-              </button>
-              <button aria-label="Enviar convite" className="transition hover:text-slate-600">
-                <Mail size={17} aria-hidden="true" />
-              </button>
-              <button aria-label="Copiar acesso" className="transition hover:text-slate-600">
-                <Copy size={17} aria-hidden="true" />
-              </button>
-              <button aria-label="Editar" className="transition hover:text-slate-600">
-                <Pencil size={17} aria-hidden="true" />
-              </button>
-              <button aria-label="Ativar ou bloquear" className="transition hover:text-slate-600">
-                <Power size={17} aria-hidden="true" />
-              </button>
-              <button aria-label="Excluir" className="transition hover:text-red-500">
-                <Trash2 size={17} aria-hidden="true" />
-              </button>
-            </div>
+            <BarbershopRowActions shop={shop} />
           </div>
         ))}
       </section>

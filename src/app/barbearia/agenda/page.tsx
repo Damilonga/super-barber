@@ -8,6 +8,7 @@ import {
   getBarbersByBarbershopId,
   getServicesByBarbershopId,
 } from "@/lib/db/queries";
+import { AppointmentStatusSelect } from "./appointment-status-select";
 
 export const dynamic = "force-dynamic";
 
@@ -58,7 +59,7 @@ export default async function AgendaPage() {
               <span className="text-sm font-bold text-slate-500">Data</span>
               <input
                 type="date"
-                defaultValue="2026-05-08"
+                defaultValue={new Date().toISOString().slice(0, 10)}
                 className="mt-2 h-11 w-full rounded-lg border border-slate-200 px-3 text-sm font-medium text-slate-700"
               />
             </label>
@@ -90,7 +91,7 @@ export default async function AgendaPage() {
           <div className="border-b border-slate-100 px-5 py-4">
             <h2 className="font-bold text-slate-950">Agenda do dia</h2>
           </div>
-          <div className="grid grid-cols-[140px_1fr_180px_120px] border-b border-slate-100 px-5 py-3 text-sm font-bold text-slate-500">
+          <div className="grid grid-cols-[140px_1fr_180px_150px] border-b border-slate-100 px-5 py-3 text-sm font-bold text-slate-500">
             <span>Horario</span>
             <span>Cliente</span>
             <span>Servico</span>
@@ -104,7 +105,7 @@ export default async function AgendaPage() {
               return (
                 <div
                   key={appointment.id}
-                  className="grid grid-cols-[140px_1fr_180px_120px] items-center border-b border-slate-100 px-5 py-4 text-sm last:border-b-0"
+                  className="grid grid-cols-[140px_1fr_180px_150px] items-center border-b border-slate-100 px-5 py-4 text-sm last:border-b-0"
                 >
                   <p className="font-bold text-slate-800">
                     {appointment.startTime} - {appointment.endTime}
@@ -116,9 +117,11 @@ export default async function AgendaPage() {
                     <p className="text-xs font-medium text-slate-400">{barber?.name}</p>
                   </div>
                   <p className="font-medium text-slate-600">{service?.name}</p>
-                  <span className="w-fit rounded-md bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 ring-1 ring-slate-200">
-                    {appointment.status}
-                  </span>
+                  <AppointmentStatusSelect
+                    appointmentId={appointment.id}
+                    barbershopId={appointment.barbershopId}
+                    status={appointment.status}
+                  />
                 </div>
               );
             })}

@@ -16,6 +16,7 @@ export type Barbershop = {
   ownerName: string;
   email: string;
   phone: string;
+  address: string;
   plan: string;
   status: BarbershopStatus;
   primaryColor: string;

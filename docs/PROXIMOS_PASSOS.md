@@ -52,13 +52,13 @@ Objetivo: permitir editar e excluir dados.
 
 Tarefas:
 
-- Editar barbearia.
-- Ativar/inativar barbearia.
+- [x] Editar barbearia.
+- [x] Ativar/inativar barbearia.
 - [x] Editar barbeiro.
 - [x] Ativar/inativar barbeiro.
 - [x] Editar servico.
 - [x] Ativar/inativar servico.
-- Alterar status do agendamento.
+- [x] Alterar status do agendamento.
 
 ## 5. Deploy
 

@@ -101,6 +101,10 @@ Arquivos principais:
 
 - Lista barbearias vindas do Neon.
 - Cadastra nova barbearia no Neon.
+- Edita dados da barbearia no Neon.
+- Ativa/inativa barbearias sem apagar historico.
+- Ao inativar/bloquear uma barbearia, inativa tambem o usuario admin dessa barbearia.
+- Copia link publico de agendamento direto pela tabela.
 - Gera slug automaticamente.
 - Valida nome, responsavel, e-mail, telefone e plano.
 - Ao cadastrar uma barbearia, cria tambem o usuario dono.
@@ -112,6 +116,7 @@ Arquivos principais:
 - `src/app/admin/barbearias/page.tsx`
 - `src/app/admin/barbearias/actions.ts`
 - `src/app/admin/barbearias/create-barbershop-form.tsx`
+- `src/app/admin/barbearias/barbershop-row-actions.tsx`
 
 ### Primeiro acesso
 
@@ -148,6 +153,7 @@ Arquivos principais:
 
 - Dashboard le dados reais do Neon.
 - Agenda le agendamentos reais do Neon.
+- Agenda permite alterar status do agendamento: agendado, confirmado, atendido, cancelado e ausente.
 - Barbeiros leem e cadastram dados reais no Neon.
 - Barbeiros podem ser editados e ativados/inativados sem apagar historico.
 - Servicos leem e cadastram dados reais no Neon.
@@ -158,6 +164,8 @@ Arquivos principais:
 
 - `src/app/barbearia/dashboard/page.tsx`
 - `src/app/barbearia/agenda/page.tsx`
+- `src/app/barbearia/agenda/actions.ts`
+- `src/app/barbearia/agenda/appointment-status-select.tsx`
 - `src/app/barbearia/barbeiros/page.tsx`
 - `src/app/barbearia/barbeiros/actions.ts`
 - `src/app/barbearia/barbeiros/create-barber-form.tsx`
@@ -214,7 +222,7 @@ npm run db:inspect
 
 ## Proximo bloco recomendado
 
-Continuar CRUD completo: editar/inativar barbearias no Super Admin e permitir alterar status dos agendamentos.
+Iniciar deploy: criar projeto na Vercel, configurar variaveis de ambiente, conectar Neon e testar a primeira versao online.
 
 ## Observacoes importantes
 

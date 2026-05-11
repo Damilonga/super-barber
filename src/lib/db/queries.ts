@@ -14,6 +14,7 @@ type BarbershopRow = {
   owner_name: string;
   email: string;
   phone: string;
+  address: string | null;
   plan: string;
   status: Barbershop["status"];
   primary_color: string;
@@ -73,6 +74,7 @@ function mapBarbershop(row: BarbershopRow): Barbershop {
     ownerName: row.owner_name,
     email: row.email,
     phone: row.phone,
+    address: row.address ?? "",
     plan: row.plan,
     status: row.status,
     primaryColor: row.primary_color,
@@ -143,6 +145,7 @@ export async function getBarbershops(): Promise<Barbershop[]> {
       owner_name,
       email,
       phone,
+      address,
       plan,
       status,
       primary_color,
@@ -164,6 +167,7 @@ export async function getBarbershopBySlug(slug: string): Promise<Barbershop | nu
       owner_name,
       email,
       phone,
+      address,
       plan,
       status,
       primary_color,
@@ -186,6 +190,7 @@ export async function getBarbershopById(id: string): Promise<Barbershop | null> 
       owner_name,
       email,
       phone,
+      address,
       plan,
       status,
       primary_color,
@@ -208,6 +213,7 @@ export async function getDefaultBarbershop(): Promise<Barbershop | null> {
       owner_name,
       email,
       phone,
+      address,
       plan,
       status,
       primary_color,
