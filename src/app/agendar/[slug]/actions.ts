@@ -20,6 +20,32 @@ function addMinutesToTime(time: string, minutes: number) {
   return `${endHours}:${endMinutes}`;
 }
 
+function getWeekday(date: string) {
+  const [year, month, day] = date.split("-").map(Number);
+  return new Date(year, month - 1, day).getDay();
+}
+
+function timeToMinutes(time: string) {
+  const [hours, minutes] = time.slice(0, 5).split(":").map(Number);
+  return hours * 60 + minutes;
+}
+
+function isInsideAvailability(
+  startTime: string,
+  endTime: string,
+  windows: { start_time: string; end_time: string }[],
+) {
+  const start = timeToMinutes(startTime);
+  const end = timeToMinutes(endTime);
+
+  return windows.some((window) => {
+    const windowStart = timeToMinutes(window.start_time);
+    const windowEnd = timeToMinutes(window.end_time);
+
+    return start >= windowStart && end <= windowEnd;
+  });
+}
+
 export async function createAppointment(
   _previousState: CreateAppointmentState,
   formData: FormData,
@@ -45,6 +71,22 @@ export async function createAppointment(
 
   try {
     const sql = getSql();
+    const [barber] = (await sql`
+      select id
+      from public.barbers
+      where id = ${parsed.data.barberId}
+        and barbershop_id = ${parsed.data.barbershopId}
+        and status = 'ativo'
+      limit 1
+    `) as { id: string }[];
+
+    if (!barber) {
+      return {
+        ok: false,
+        message: "Barbeiro indisponivel para agendamento.",
+      };
+    }
+
     const [service] = (await sql`
       select price, duration_minutes
       from public.services
@@ -61,12 +103,44 @@ export async function createAppointment(
       };
     }
 
+    const endTime = addMinutesToTime(parsed.data.startTime, service.duration_minutes);
+    const weekday = getWeekday(parsed.data.appointmentDate);
+    const configuredWindows = (await sql`
+      select start_time::text as start_time, end_time::text as end_time
+      from public.available_hours
+      where barbershop_id = ${parsed.data.barbershopId}
+        and barber_id = ${parsed.data.barberId}
+        and weekday = ${weekday}
+        and active = true
+      order by start_time asc
+    `) as { start_time: string; end_time: string }[];
+
+    const availabilityWindows = configuredWindows.length
+      ? configuredWindows
+      : weekday === 0
+        ? []
+        : [{ start_time: "09:00", end_time: "18:00" }];
+
+    if (
+      !isInsideAvailability(
+        parsed.data.startTime,
+        endTime,
+        availabilityWindows,
+      )
+    ) {
+      return {
+        ok: false,
+        message: "Esse horario nao esta dentro da agenda do barbeiro.",
+      };
+    }
+
     const [conflict] = (await sql`
       select id
       from public.appointments
       where barber_id = ${parsed.data.barberId}
         and appointment_date = ${parsed.data.appointmentDate}
-        and start_time = ${parsed.data.startTime}
+        and start_time < ${endTime}
+        and end_time > ${parsed.data.startTime}
         and status not in ('cancelado', 'ausente')
       limit 1
     `) as { id: string }[];
@@ -77,8 +151,6 @@ export async function createAppointment(
         message: "Esse horario acabou de ser ocupado. Escolha outro horario.",
       };
     }
-
-    const endTime = addMinutesToTime(parsed.data.startTime, service.duration_minutes);
 
     await sql`
       insert into public.appointments (

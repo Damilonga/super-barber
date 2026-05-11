@@ -168,10 +168,14 @@ Arquivos principais:
 
 - Pagina publica por slug em `/agendar/[slug]`.
 - Carrega barbearia, barbeiros e servicos do Neon.
-- Cliente escolhe barbeiro, servico, data, horario e informa dados.
+- Cliente escolhe barbeiro, servico, data, horario disponivel e informa dados.
 - Agendamento e salvo no Neon.
 - Sistema calcula horario final usando duracao do servico.
-- Sistema impede conflito do mesmo barbeiro, data e horario.
+- Sistema gera horarios com base em `available_hours` quando existir.
+- Para barbeiros antigos sem disponibilidade cadastrada, usa fallback temporario de segunda a sabado, das 09:00 as 18:00.
+- Sistema bloqueia visualmente horarios ocupados e tambem revalida no servidor antes de salvar.
+- Sistema impede conflitos por sobreposicao de horario do mesmo barbeiro, nao apenas mesmo horario inicial.
+- Tela de sucesso do cliente ficou mais clara e os campos do formulario sao limpos apos confirmacao.
 - Agenda da barbearia passa a mostrar o agendamento.
 
 Arquivos principais:
@@ -206,7 +210,7 @@ npm run db:inspect
 
 ## Proximo bloco recomendado
 
-Melhorar cadastro de barbearias com criacao do usuario dono, senha temporaria e primeiro acesso.
+Implementar CRUD completo: editar/inativar barbeiros, servicos e barbearias, alem de alterar status dos agendamentos.
 
 ## Observacoes importantes
 

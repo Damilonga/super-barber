@@ -39,11 +39,12 @@ Objetivo: deixar o agendamento mais proximo de producao.
 
 Tarefas:
 
-- Mostrar apenas horarios realmente disponiveis.
-- Bloquear horarios ja ocupados visualmente.
-- Gerar horarios com base na agenda do barbeiro.
-- Exibir tela de sucesso mais clara.
-- Limpar formulario apos agendamento.
+- [x] Mostrar apenas horarios realmente disponiveis.
+- [x] Bloquear horarios ja ocupados visualmente.
+- [x] Gerar horarios com base na agenda do barbeiro.
+- [x] Exibir tela de sucesso mais clara.
+- [x] Limpar formulario apos agendamento.
+- [x] Revalidar disponibilidade no servidor antes de salvar.
 
 ## 4. CRUD completo
 

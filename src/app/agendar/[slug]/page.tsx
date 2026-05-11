@@ -1,5 +1,7 @@
 import Link from "next/link";
 import {
+  getAppointmentsByBarbershopId,
+  getAvailableHoursByBarbershopId,
   getBarbersByBarbershopId,
   getBarbershopBySlug,
   getServicesByBarbershopId,
@@ -37,10 +39,19 @@ export default async function PublicBookingPage({ params }: PublicBookingPagePro
     );
   }
 
-  const [shopBarbers, shopServices] = await Promise.all([
+  const [shopBarbers, shopServices, availableHours, appointments] = await Promise.all([
     getBarbersByBarbershopId(shop.id),
     getServicesByBarbershopId(shop.id),
+    getAvailableHoursByBarbershopId(shop.id),
+    getAppointmentsByBarbershopId(shop.id),
   ]);
+
+  const activeBarbers = shopBarbers.filter((barber) => barber.status === "ativo");
+  const activeServices = shopServices.filter((service) => service.status === "ativo");
+  const activeAppointments = appointments.filter(
+    (appointment) =>
+      appointment.status !== "cancelado" && appointment.status !== "ausente",
+  );
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -68,7 +79,13 @@ export default async function PublicBookingPage({ params }: PublicBookingPagePro
             </span>
           </div>
 
-          <BookingForm shop={shop} barbers={shopBarbers} services={shopServices} />
+          <BookingForm
+            shop={shop}
+            barbers={activeBarbers}
+            services={activeServices}
+            availableHours={availableHours}
+            appointments={activeAppointments}
+          />
         </div>
       </section>
     </main>

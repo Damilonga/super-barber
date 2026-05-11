@@ -1,5 +1,11 @@
 import { getSql } from "@/lib/db/client";
-import type { Appointment, Barber, Barbershop, Service } from "@/types";
+import type {
+  Appointment,
+  AvailableHour,
+  Barber,
+  Barbershop,
+  Service,
+} from "@/types";
 
 type BarbershopRow = {
   id: string;
@@ -45,6 +51,17 @@ type AppointmentRow = {
   end_time: string;
   status: Appointment["status"];
   value: string;
+};
+
+type AvailableHourRow = {
+  id: string;
+  barbershop_id: string;
+  barber_id: string;
+  weekday: number;
+  start_time: string;
+  end_time: string;
+  interval_minutes: number;
+  active: boolean;
 };
 
 function mapBarbershop(row: BarbershopRow): Barbershop {
@@ -98,6 +115,19 @@ function mapAppointment(row: AppointmentRow): Appointment {
     endTime: row.end_time.slice(0, 5),
     status: row.status,
     value: Number(row.value),
+  };
+}
+
+function mapAvailableHour(row: AvailableHourRow): AvailableHour {
+  return {
+    id: row.id,
+    barbershopId: row.barbershop_id,
+    barberId: row.barber_id,
+    weekday: row.weekday,
+    startTime: row.start_time.slice(0, 5),
+    endTime: row.end_time.slice(0, 5),
+    intervalMinutes: row.interval_minutes,
+    active: row.active,
   };
 }
 
@@ -240,6 +270,29 @@ export async function getAppointmentsByBarbershopId(
   `) as AppointmentRow[];
 
   return rows.map(mapAppointment);
+}
+
+export async function getAvailableHoursByBarbershopId(
+  barbershopId: string,
+): Promise<AvailableHour[]> {
+  const sql = getSql();
+  const rows = (await sql`
+    select
+      id,
+      barbershop_id,
+      barber_id,
+      weekday,
+      start_time::text as start_time,
+      end_time::text as end_time,
+      interval_minutes,
+      active
+    from public.available_hours
+    where barbershop_id = ${barbershopId}
+      and active = true
+    order by weekday asc, start_time asc
+  `) as AvailableHourRow[];
+
+  return rows.map(mapAvailableHour);
 }
 
 export async function getAppointmentCount(): Promise<number> {

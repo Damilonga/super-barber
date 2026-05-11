@@ -54,3 +54,14 @@ export type Appointment = {
   status: AppointmentStatus;
   value: number;
 };
+
+export type AvailableHour = {
+  id: string;
+  barbershopId: string;
+  barberId: string;
+  weekday: number;
+  startTime: string;
+  endTime: string;
+  intervalMinutes: number;
+  active: boolean;
+};
