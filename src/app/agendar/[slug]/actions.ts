@@ -71,11 +71,32 @@ export async function createAppointment(
 
   try {
     const sql = getSql();
+    const [shop] = (await sql`
+      select id, status
+      from public.barbershops
+      where slug = ${slug}
+      limit 1
+    `) as { id: string; status: string }[];
+
+    if (!shop || shop.status !== "ativa") {
+      return {
+        ok: false,
+        message: "Link de agendamento indisponivel.",
+      };
+    }
+
+    if (shop.id !== parsed.data.barbershopId) {
+      return {
+        ok: false,
+        message: "Link de agendamento invalido para essa barbearia.",
+      };
+    }
+
     const [barber] = (await sql`
       select id
       from public.barbers
       where id = ${parsed.data.barberId}
-        and barbershop_id = ${parsed.data.barbershopId}
+        and barbershop_id = ${shop.id}
         and status = 'ativo'
       limit 1
     `) as { id: string }[];
@@ -91,7 +112,7 @@ export async function createAppointment(
       select price, duration_minutes
       from public.services
       where id = ${parsed.data.serviceId}
-        and barbershop_id = ${parsed.data.barbershopId}
+        and barbershop_id = ${shop.id}
         and status = 'ativo'
       limit 1
     `) as { price: string; duration_minutes: number }[];
@@ -108,7 +129,7 @@ export async function createAppointment(
     const configuredWindows = (await sql`
       select start_time::text as start_time, end_time::text as end_time
       from public.available_hours
-      where barbershop_id = ${parsed.data.barbershopId}
+      where barbershop_id = ${shop.id}
         and barber_id = ${parsed.data.barberId}
         and weekday = ${weekday}
         and active = true
@@ -166,7 +187,7 @@ export async function createAppointment(
         status,
         value
       ) values (
-        ${parsed.data.barbershopId},
+        ${shop.id},
         ${parsed.data.barberId},
         ${parsed.data.serviceId},
         ${parsed.data.customerName},

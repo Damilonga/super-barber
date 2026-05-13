@@ -18,7 +18,7 @@ Tarefas:
 - [x] Refinar menu por perfil.
 - [x] Remover credenciais demo da tela de login antes de producao.
 - [ ] Trocar senha do Neon antes de producao.
-- [ ] Reforcar isolamento por `barbershop_id` em todos os fluxos.
+- [x] Reforcar isolamento por `barbershop_id` em todos os fluxos criticos.
 
 ## 2. Melhorar cadastro de barbearias
 
