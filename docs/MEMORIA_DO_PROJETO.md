@@ -256,6 +256,12 @@ Refinar pre-producao: remover credenciais demo da tela de login, trocar senha do
 - Pitch comercial em `docs/PITCH_COMERCIAL.md`.
 - Checklist de demonstracao em `docs/CHECKLIST_DEMO_BARBEARIAS.md`.
 
+## Rotina Git
+
+- Prompt reutilizavel em `.codex/prompts/git-sync.md`.
+- Checklist operacional em `docs/ROTINA_GIT.md`.
+- Usar antes de iniciar trabalho em outro notebook e ao finalizar uma etapa com commit/push.
+
 ## Observacoes importantes
 
 - Hoje as telas da barbearia usam a primeira barbearia cadastrada como contexto temporario.
