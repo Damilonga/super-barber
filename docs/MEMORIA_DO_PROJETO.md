@@ -212,7 +212,7 @@ Arquivos principais:
 - Para barbeiros antigos sem disponibilidade cadastrada, usa fallback temporario de segunda a sabado, das 09:00 as 18:00.
 - Sistema bloqueia visualmente horarios ocupados e tambem revalida no servidor antes de salvar.
 - Sistema impede conflitos por sobreposicao de horario do mesmo barbeiro, nao apenas mesmo horario inicial.
-- Servidor deriva a barbearia pelo `slug` da URL no agendamento publico e valida contra o `barbershop_id`, evitando envio manipulado para outra barbearia.
+- Servidor deriva a barbearia pelo `slug` da URL no agendamento publico e nao depende de `barbershop_id` enviado pelo navegador.
 - Tela de sucesso do cliente ficou mais clara e os campos do formulario sao limpos apos confirmacao.
 - Agenda da barbearia passa a mostrar o agendamento.
 

@@ -154,7 +154,6 @@ export function BookingForm({
       action={formAction}
       className="mt-6 grid gap-6 lg:grid-cols-[1fr_340px]"
     >
-      <input type="hidden" name="barbershopId" value={shop.id} />
       <input type="hidden" name="slug" value={shop.slug} />
 
       <div className="space-y-5">

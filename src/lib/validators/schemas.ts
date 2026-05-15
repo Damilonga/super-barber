@@ -47,7 +47,6 @@ export const updateBarberSchema = barberSchema.extend({
 });
 
 export const appointmentSchema = z.object({
-  barbershopId: z.string().uuid("Barbearia invalida"),
   barberId: z.string().uuid("Escolha um barbeiro"),
   serviceId: z.string().uuid("Escolha um servico"),
   customerName: z.string().min(2, "Informe seu nome"),

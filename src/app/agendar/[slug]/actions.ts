@@ -52,7 +52,6 @@ export async function createAppointment(
 ): Promise<CreateAppointmentState> {
   const slug = String(formData.get("slug") ?? "");
   const parsed = appointmentSchema.safeParse({
-    barbershopId: formData.get("barbershopId"),
     barberId: formData.get("barberId"),
     serviceId: formData.get("serviceId"),
     customerName: formData.get("customerName"),
@@ -82,13 +81,6 @@ export async function createAppointment(
       return {
         ok: false,
         message: "Link de agendamento indisponivel.",
-      };
-    }
-
-    if (shop.id !== parsed.data.barbershopId) {
-      return {
-        ok: false,
-        message: "Link de agendamento invalido para essa barbearia.",
       };
     }
 
