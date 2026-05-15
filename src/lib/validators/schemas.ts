@@ -12,6 +12,14 @@ export const slugSchema = z
   .min(3, "O slug precisa ter ao menos 3 caracteres")
   .regex(/^[a-z0-9-]+$/, "Use letras minusculas, numeros e hifens");
 
+const postgresUuidSchema = (message: string) =>
+  z
+    .string()
+    .regex(
+      /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+      message,
+    );
+
 export const barbershopSchema = z.object({
   name: z.string().min(2, "Informe o nome da barbearia"),
   ownerName: z.string().min(2, "Informe o responsavel"),
@@ -47,8 +55,8 @@ export const updateBarberSchema = barberSchema.extend({
 });
 
 export const appointmentSchema = z.object({
-  barberId: z.string().uuid("Escolha um barbeiro"),
-  serviceId: z.string().uuid("Escolha um servico"),
+  barberId: postgresUuidSchema("Escolha um barbeiro"),
+  serviceId: postgresUuidSchema("Escolha um servico"),
   customerName: z.string().min(2, "Informe seu nome"),
   customerPhone: phoneSchema,
   customerEmail: emailSchema.optional().or(z.literal("")),

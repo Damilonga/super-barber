@@ -213,6 +213,7 @@ Arquivos principais:
 - Sistema bloqueia visualmente horarios ocupados e tambem revalida no servidor antes de salvar.
 - Sistema impede conflitos por sobreposicao de horario do mesmo barbeiro, nao apenas mesmo horario inicial.
 - Servidor deriva a barbearia pelo `slug` da URL no agendamento publico e nao depende de `barbershop_id` enviado pelo navegador.
+- Validação do agendamento publico aceita UUID no formato usado pelo Postgres para IDs demo e reais.
 - Tela de sucesso do cliente ficou mais clara e os campos do formulario sao limpos apos confirmacao.
 - Agenda da barbearia passa a mostrar o agendamento.
 
