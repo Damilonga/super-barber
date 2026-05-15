@@ -83,3 +83,29 @@ Tarefas:
 - [x] Criar tela de planos.
 - [x] Criar pitch simples do produto.
 - [x] Criar checklist de apresentacao para barbearias.
+
+## 7. Evolucao do produto
+
+Objetivo: transformar o app em uma ferramenta mais completa para operacao e tomada de decisao da barbearia.
+
+Demandas priorizadas:
+
+- [ ] Padronizar valores em moeda brasileira em telas, cards, tabelas, agendamento e relatorios.
+- [ ] Bloquear horarios passados no dia atual e reforcar regras de disponibilidade no agendamento.
+- [ ] Permitir que a barbearia configure intervalo de agenda, dias de funcionamento, abertura, fechamento e limite de agenda futura.
+- [ ] Criar vinculo entre barbeiros e servicos.
+- [ ] Permitir multiplos servicos em um mesmo agendamento com soma de duracao.
+- [ ] Completar cadastro da barbearia com CPF/CNPJ, razao social, nome fantasia, responsavel, WhatsApp e endereco completo.
+- [ ] Melhorar dashboard gerencial com filtros e indicadores para tomada de decisao.
+- [ ] Planejar confirmacoes por e-mail e WhatsApp, sem implementar antes de escolher o provedor.
+
+Ordem recomendada:
+
+1. Moeda.
+2. Horarios passados e regras basicas de agenda.
+3. Configuracao de agenda.
+4. Vinculo barbeiro-servico.
+5. Multiplos servicos.
+6. Cadastro completo da barbearia.
+7. Dashboard gerencial.
+8. E-mail e WhatsApp.

@@ -253,10 +253,23 @@ npm run db:inspect
 - Motivo: alguns UUIDs aceitos pelo Postgres, incluindo IDs demo, eram rejeitados pelo validador rigido do Zod.
 - Isso corrigiu o erro `Barbearia invalida` ao cadastrar servicos e previne o mesmo problema em barbearias, barbeiros, agenda, onboarding e edicao de servicos.
 - Validado com `npm run lint` e `npm run build`.
+- Modal de edicao de servico agora fecha automaticamente apos salvar com sucesso.
+- Ultimos deploys de producao publicados na Vercel em `https://super-barber-rho.vercel.app`.
+
+## Demandas priorizadas para evolucao do produto
+
+1. Padronizar todos os valores em formato de moeda brasileira, como `R$ 70,00`.
+2. Reforcar regras de horario no agendamento: bloquear horarios passados, respeitar duracao real, impedir sobreposicao e aplicar antecedencia minima.
+3. Permitir configuracao de agenda por barbearia: intervalo de horarios, dias de funcionamento, abertura, fechamento e limite de dias futuros.
+4. Criar vinculo entre barbeiros e servicos: um barbeiro pode executar varios servicos e um servico pode ser executado por varios barbeiros.
+5. Permitir agendamento com multiplos servicos para o mesmo barbeiro, somando a duracao total e buscando uma janela livre.
+6. Completar cadastro da barbearia com CPF/CNPJ, razao social, nome fantasia, responsavel, WhatsApp e endereco completo.
+7. Melhorar dashboard gerencial com filtros por periodo, barbeiro, servico, status, faturamento, ticket medio, horarios de pico e recorrencia.
+8. Planejar confirmacoes e notificacoes: primeiro tela/painel, depois e-mail e por ultimo WhatsApp.
 
 ## Proximo bloco recomendado
 
-Refinar pre-producao: remover credenciais demo da tela de login, trocar senha do Neon, revisar isolamento por barbearia e preparar dominio proprio.
+Proximo bloco recomendado: iniciar pela demanda 1, padronizacao de moeda, por ser melhoria visual/UX de baixo risco. Em seguida, demanda 2, regras de horarios passados e agenda basica.
 
 ## Materiais comerciais
 
