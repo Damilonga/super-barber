@@ -247,6 +247,13 @@ npm run db:check
 npm run db:inspect
 ```
 
+## Correcoes recentes
+
+- Validadores internos de IDs passaram a usar `postgresUuidSchema` em vez de `z.string().uuid()`.
+- Motivo: alguns UUIDs aceitos pelo Postgres, incluindo IDs demo, eram rejeitados pelo validador rigido do Zod.
+- Isso corrigiu o erro `Barbearia invalida` ao cadastrar servicos e previne o mesmo problema em barbearias, barbeiros, agenda, onboarding e edicao de servicos.
+- Validado com `npm run lint` e `npm run build`.
+
 ## Proximo bloco recomendado
 
 Refinar pre-producao: remover credenciais demo da tela de login, trocar senha do Neon, revisar isolamento por barbearia e preparar dominio proprio.

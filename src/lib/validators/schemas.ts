@@ -30,12 +30,12 @@ export const barbershopSchema = z.object({
 });
 
 export const updateBarbershopSchema = barbershopSchema.extend({
-  barbershopId: z.string().uuid("Barbearia invalida"),
+  barbershopId: postgresUuidSchema("Barbearia invalida"),
   status: z.enum(["ativa", "inativa", "bloqueada"]),
 });
 
 export const serviceSchema = z.object({
-  barbershopId: z.string().uuid("Barbearia invalida"),
+  barbershopId: postgresUuidSchema("Barbearia invalida"),
   name: z.string().min(2, "Informe o nome do servico"),
   description: z.string().optional(),
   price: z.coerce.number().positive("Informe um preco positivo"),
@@ -43,14 +43,14 @@ export const serviceSchema = z.object({
 });
 
 export const barberSchema = z.object({
-  barbershopId: z.string().uuid("Barbearia invalida"),
+  barbershopId: postgresUuidSchema("Barbearia invalida"),
   name: z.string().min(2, "Informe o nome do barbeiro"),
   phone: phoneSchema.optional().or(z.literal("")),
   specialties: z.string().optional(),
 });
 
 export const updateBarberSchema = barberSchema.extend({
-  barberId: z.string().uuid("Barbeiro invalido"),
+  barberId: postgresUuidSchema("Barbeiro invalido"),
   status: z.enum(["ativo", "inativo"]),
 });
 
@@ -65,8 +65,8 @@ export const appointmentSchema = z.object({
 });
 
 export const updateAppointmentStatusSchema = z.object({
-  appointmentId: z.string().uuid("Agendamento invalido"),
-  barbershopId: z.string().uuid("Barbearia invalida"),
+  appointmentId: postgresUuidSchema("Agendamento invalido"),
+  barbershopId: postgresUuidSchema("Barbearia invalida"),
   status: z.enum(["agendado", "confirmado", "atendido", "cancelado", "ausente"]),
 });
 
@@ -86,7 +86,7 @@ export const firstAccessPasswordSchema = z
   });
 
 export const onboardingSchema = z.object({
-  barbershopId: z.string().uuid("Barbearia invalida"),
+  barbershopId: postgresUuidSchema("Barbearia invalida"),
   name: z.string().min(2, "Informe o nome publico da barbearia"),
   phone: phoneSchema,
   address: z.string().min(3, "Informe o endereco"),
@@ -97,6 +97,6 @@ export const onboardingSchema = z.object({
 });
 
 export const updateServiceSchema = serviceSchema.extend({
-  serviceId: z.string().uuid("Servico invalido"),
+  serviceId: postgresUuidSchema("Servico invalido"),
   status: z.enum(["ativo", "inativo"]),
 });
